@@ -1,0 +1,56 @@
+# =============================================================================
+# Confidential data — DO NOT PUBLISH
+# =============================================================================
+# The UC2 dataset is provided by Masabi under a data-use agreement and contains
+# MBTA rider account_ids. None of the raw inputs or rider-level outputs may be
+# committed to a public repository.
+UC2_v2/data/
+*.csv.gz
+
+# Rider-level outputs (contain account_ids of suspected fraudsters)
+UC2_v2/outputs/feature_table.*
+UC2_v2/outputs/symbol_rows.*
+UC2_v2/outputs/sequences.npz
+UC2_v2/outputs/rider_scores.*
+UC2_v2/outputs/uc2_human_review_shortlist*.csv
+UC2_v2/outputs/uc2_hmm_only_riders*.csv
+UC2_v2/outputs/uc2_rule_vs_hmm_overlap*.csv
+
+# (Model-level outputs without rider identifiers — hmm_best.pkl,
+#  hmm_emissions.csv, hmm_grid_results.csv — are committed.)
+
+# =============================================================================
+# Python
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# =============================================================================
+# OS / IDE
+# =============================================================================
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# =============================================================================
+# Build / dist
+# =============================================================================
+build/
+dist/
+*.egg

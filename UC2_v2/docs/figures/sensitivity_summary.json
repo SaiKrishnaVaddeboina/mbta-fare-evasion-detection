@@ -1,0 +1,75 @@
+{
+  "n_schemes": 6,
+  "baseline": "Baseline (0.50 / 0.30 / 0.15 / 0.05)",
+  "median_pairwise_jaccard": 0.04712041884816754,
+  "min_pairwise_jaccard": 0.0,
+  "max_pairwise_jaccard": 0.5873015873015873,
+  "schemes": [
+    {
+      "scheme": "Baseline (0.50 / 0.30 / 0.15 / 0.05)",
+      "weights": {
+        "posterior": 0.5,
+        "rule": 0.3,
+        "gaming": 0.15,
+        "burst": 0.05
+      },
+      "shared_with_baseline": 100,
+      "jaccard_vs_baseline": 1.0
+    },
+    {
+      "scheme": "HMM-heavy (0.70 / 0.15 / 0.10 / 0.05)",
+      "weights": {
+        "posterior": 0.7,
+        "rule": 0.15,
+        "gaming": 0.1,
+        "burst": 0.05
+      },
+      "shared_with_baseline": 74,
+      "jaccard_vs_baseline": 0.5873015873015873
+    },
+    {
+      "scheme": "Rule-heavy (0.20 / 0.60 / 0.15 / 0.05)",
+      "weights": {
+        "posterior": 0.2,
+        "rule": 0.6,
+        "gaming": 0.15,
+        "burst": 0.05
+      },
+      "shared_with_baseline": 69,
+      "jaccard_vs_baseline": 0.5267175572519084
+    },
+    {
+      "scheme": "Equal weights (0.25 / 0.25 / 0.25 / 0.25)",
+      "weights": {
+        "posterior": 0.25,
+        "rule": 0.25,
+        "gaming": 0.25,
+        "burst": 0.25
+      },
+      "shared_with_baseline": 53,
+      "jaccard_vs_baseline": 0.36054421768707484
+    },
+    {
+      "scheme": "HMM-only (1.0 / 0 / 0 / 0)",
+      "weights": {
+        "posterior": 1.0,
+        "rule": 0.0,
+        "gaming": 0.0,
+        "burst": 0.0
+      },
+      "shared_with_baseline": 1,
+      "jaccard_vs_baseline": 0.005025125628140704
+    },
+    {
+      "scheme": "Rules-only (0 / 1.0 / 0 / 0)",
+      "weights": {
+        "posterior": 0.0,
+        "rule": 1.0,
+        "gaming": 0.0,
+        "burst": 0.0
+      },
+      "shared_with_baseline": 9,
+      "jaccard_vs_baseline": 0.04712041884816754
+    }
+  ]
+}

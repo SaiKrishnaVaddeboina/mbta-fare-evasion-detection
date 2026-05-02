@@ -1,0 +1,23 @@
+{
+  "n_fits_compared": 3,
+  "winner": "#1  states=9, seed=6, BIC=5,283,201",
+  "median_pairwise_jaccard": 0.42857142857142855,
+  "min_pairwise_jaccard": 0.36054421768707484,
+  "max_pairwise_jaccard": 0.43884892086330934,
+  "mean_pairwise_jaccard": 0.40932152237393754,
+  "winner_vs_others_jaccard": [
+    {
+      "fit": "#2  states=11, seed=5, BIC=5,314,340",
+      "jaccard_vs_winner": 0.43884892086330934
+    },
+    {
+      "fit": "#3  states=11, seed=6, BIC=5,335,142",
+      "jaccard_vs_winner": 0.36054421768707484
+    }
+  ],
+  "fits": [
+    "#1  states=9, seed=6, BIC=5,283,201",
+    "#2  states=11, seed=5, BIC=5,314,340",
+    "#3  states=11, seed=6, BIC=5,335,142"
+  ]
+}
