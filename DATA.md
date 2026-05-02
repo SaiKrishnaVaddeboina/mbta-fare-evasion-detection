@@ -6,12 +6,12 @@ included in this repository** and is governed by a data-use agreement with
 Masabi; access is granted on a per-engagement basis.
 
 This document specifies the schema the pipeline expects, so that the code
-in [`UC2_v2/`](UC2_v2/) can be reviewed and (with the synthetic-data
+in [`pipeline/`](pipeline/) can be reviewed and (with the synthetic-data
 generator below) executed end-to-end without the production data.
 
 ## Required tables
 
-The pipeline consumes seven CSVs placed in `UC2_v2/data/`:
+The pipeline consumes seven CSVs placed in `pipeline/data/`:
 
 | File | Size (production) | Rows (production) | Role |
 |---|---:|---:|---|
@@ -79,7 +79,7 @@ they support.
 ## Timestamp handling
 
 All timestamps in the production CSVs are naive local times in
-`America/New_York`. The pipeline (in [`UC2_v2/src/uc2_io.py`](UC2_v2/src/uc2_io.py))
+`America/New_York`. The pipeline (in [`pipeline/src/uc2_io.py`](pipeline/src/uc2_io.py))
 localises them to Eastern Time and converts to UTC before any timing
 arithmetic, with strict tolerances on parse failures (default ≤ 0.1 % of
 rows allowed to fail before the read errors out).
@@ -88,7 +88,7 @@ rows allowed to fail before the read errors out).
 
 A nine-checkpoint readiness audit precedes any modelling. The status from
 the latest production run is documented in
-[`UC2_v2/RUN_RESULTS.md`](UC2_v2/RUN_RESULTS.md).
+[`pipeline/RUN_RESULTS.md`](pipeline/RUN_RESULTS.md).
 
 ## Running the pipeline against synthetic data
 
@@ -97,7 +97,7 @@ pipeline runs end-to-end, generate synthetic CSVs with the matching
 schema:
 
 ```bash
-python scripts/generate_synthetic_data.py --out UC2_v2/data/ --riders 1000
+python scripts/generate_synthetic_data.py --out pipeline/data/ --riders 1000
 ```
 
 The synthetic generator produces small CSVs with the schema above and a
@@ -111,13 +111,13 @@ The following pipeline outputs contain `account_id`s and **must not be
 published**. They are excluded from this repository via
 [`.gitignore`](.gitignore):
 
-- `UC2_v2/outputs/feature_table.{parquet,pkl}`
-- `UC2_v2/outputs/symbol_rows.{parquet,pkl}`
-- `UC2_v2/outputs/sequences.npz`
-- `UC2_v2/outputs/rider_scores.parquet`
-- `UC2_v2/outputs/uc2_human_review_shortlist_v2.csv`
-- `UC2_v2/outputs/uc2_hmm_only_riders.csv`
-- `UC2_v2/outputs/uc2_rule_vs_hmm_overlap.csv`
+- `pipeline/outputs/feature_table.{parquet,pkl}`
+- `pipeline/outputs/symbol_rows.{parquet,pkl}`
+- `pipeline/outputs/sequences.npz`
+- `pipeline/outputs/rider_scores.parquet`
+- `pipeline/outputs/uc2_human_review_shortlist_v2.csv`
+- `pipeline/outputs/uc2_hmm_only_riders.csv`
+- `pipeline/outputs/uc2_rule_vs_hmm_overlap.csv`
 
 Only model-level artefacts (`hmm_best.pkl`, `hmm_emissions.csv`,
 `hmm_grid_results.csv`) — which contain trained parameters but no rider

@@ -1,12 +1,12 @@
 """Generate synthetic CSVs matching the production schema.
 
 Produces small dummy CSVs in the Masabi UC2 schema so the pipeline in
-``UC2_v2/`` can be exercised end-to-end without access to the real
+``pipeline/`` can be exercised end-to-end without access to the real
 MBTA data. The fitted HMM and shortlists from a synthetic run are not
 interpretable; the purpose is solely to verify the code path.
 
 Usage:
-    python scripts/generate_synthetic_data.py --out UC2_v2/data/ --riders 1000
+    python scripts/generate_synthetic_data.py --out pipeline/data/ --riders 1000
 """
 
 from __future__ import annotations
@@ -120,8 +120,8 @@ def make_synthetic(out_dir: Path, n_riders: int, days: int) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--out", default="UC2_v2/data", type=Path,
-                    help="Output directory (default: UC2_v2/data)")
+    ap.add_argument("--out", default="pipeline/data", type=Path,
+                    help="Output directory (default: pipeline/data)")
     ap.add_argument("--riders", default=1000, type=int,
                     help="Number of synthetic riders (default: 1000)")
     ap.add_argument("--days", default=120, type=int,

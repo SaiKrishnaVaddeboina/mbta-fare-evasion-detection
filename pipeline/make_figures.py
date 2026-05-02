@@ -1,9 +1,9 @@
 """
 Generate remaining report figures + shortlist stability analysis.
 
-Run this from the UC2_v2/ directory with your notebook's Python:
+Run this from the pipeline/ directory with your notebook's Python:
 
-    cd ~/Desktop/"Cap proj"/UC2_v2
+    cd ~/Desktop/"Cap proj"/pipeline
     python3 make_figures.py
 
 It reads rider_scores.parquet, hmm_best.pkl, sequences.npz and writes:

@@ -4,17 +4,17 @@
 # The UC2 dataset is provided by Masabi under a data-use agreement and contains
 # MBTA rider account_ids. None of the raw inputs or rider-level outputs may be
 # committed to a public repository.
-UC2_v2/data/
+pipeline/data/
 *.csv.gz
 
 # Rider-level outputs (contain account_ids of suspected fraudsters)
-UC2_v2/outputs/feature_table.*
-UC2_v2/outputs/symbol_rows.*
-UC2_v2/outputs/sequences.npz
-UC2_v2/outputs/rider_scores.*
-UC2_v2/outputs/uc2_human_review_shortlist*.csv
-UC2_v2/outputs/uc2_hmm_only_riders*.csv
-UC2_v2/outputs/uc2_rule_vs_hmm_overlap*.csv
+pipeline/outputs/feature_table.*
+pipeline/outputs/symbol_rows.*
+pipeline/outputs/sequences.npz
+pipeline/outputs/rider_scores.*
+pipeline/outputs/uc2_human_review_shortlist*.csv
+pipeline/outputs/uc2_hmm_only_riders*.csv
+pipeline/outputs/uc2_rule_vs_hmm_overlap*.csv
 
 # (Model-level outputs without rider identifiers — hmm_best.pkl,
 #  hmm_emissions.csv, hmm_grid_results.csv — are committed.)

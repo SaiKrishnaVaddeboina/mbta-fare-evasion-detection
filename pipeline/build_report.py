@@ -1,6 +1,6 @@
 """
 Build the professional UC2_v2_Report.docx using python-docx.
-Writes to UC2_v2/docs/UC2_v2_Report.docx.
+Writes to pipeline/docs/UC2_v2_Report.docx.
 """
 
 import os
@@ -16,28 +16,28 @@ from docx.shared import Cm, Inches, Pt, RGBColor
 
 # Resolve project root portably. Order of preference:
 #   1. UC2_ROOT environment variable (explicit override)
-#   2. The script's own parent directory if it contains UC2_v2/
+#   2. The script's own parent directory if it contains pipeline/
 #   3. A few well-known candidate locations (sandbox mount + user Desktop)
 def _resolve_project_root() -> Path:
     env = os.environ.get("UC2_ROOT")
     if env:
         p = Path(env).expanduser().resolve()
-        if (p / "docs").exists() or (p / "UC2_v2").exists():
-            return p if p.name == "UC2_v2" else p / "UC2_v2"
+        if (p / "docs").exists() or (p / "pipeline").exists():
+            return p if p.name == "pipeline" else p / "pipeline"
     here = Path(__file__).resolve().parent
     for candidate in (here, here.parent, here.parent.parent):
-        if (candidate / "UC2_v2" / "docs").exists():
-            return candidate / "UC2_v2"
-        if candidate.name == "UC2_v2" and (candidate / "docs").exists():
+        if (candidate / "pipeline" / "docs").exists():
+            return candidate / "pipeline"
+        if candidate.name == "pipeline" and (candidate / "docs").exists():
             return candidate
     for candidate in (
-        Path("/sessions/upbeat-stoic-ptolemy/mnt/Cap proj/UC2_v2"),
-        Path.home() / "Desktop" / "Cap proj" / "UC2_v2",
+        Path("/sessions/upbeat-stoic-ptolemy/mnt/Cap proj/pipeline"),
+        Path.home() / "Desktop" / "Cap proj" / "pipeline",
     ):
         if candidate.exists():
             return candidate
     raise FileNotFoundError(
-        "Could not locate UC2_v2/. Set UC2_ROOT to the UC2_v2 directory."
+        "Could not locate pipeline/. Set UC2_ROOT to the pipeline directory."
     )
 
 
@@ -827,7 +827,7 @@ add_para(
 # -----------------------------------------------------------------------------
 
 doc.add_heading("6. Deliverables", level=1)
-add_para("All artefacts land in UC2_v2/outputs/ and are consumed by the two CSV shortlists at the bottom of the list.")
+add_para("All artefacts land in pipeline/outputs/ and are consumed by the two CSV shortlists at the bottom of the list.")
 add_bullet("feature_table.parquet / .pkl — rider × feature matrix with calendar flags")
 add_bullet("symbol_rows.parquet / .pkl — long-format symbol rows")
 add_bullet("sequences.npz — HMM training input (≥ 5-event riders, FIFO-capped at 30)")

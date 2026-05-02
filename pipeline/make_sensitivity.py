@@ -8,9 +8,9 @@ The script recomputes the top-100 shortlist under several weighting schemes and
 reports pairwise Jaccard overlap against the baseline (the published weights).
 The output is a short JSON summary and a heatmap.
 
-Run this from the UC2_v2/ directory with your notebook's Python:
+Run this from the pipeline/ directory with your notebook's Python:
 
-    cd ~/Desktop/"Cap proj"/UC2_v2
+    cd ~/Desktop/"Cap proj"/pipeline
     python3 make_sensitivity.py
 
 It reads:

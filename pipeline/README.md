@@ -12,14 +12,14 @@ and a supplementary shortlist of riders the rules would have missed.
 ## Project layout
 
 ```
-UC2_v2/
+pipeline/
 ├── README.md                 ← this file
 ├── RUN_RESULTS.md            ← reproducible results from the latest run
 ├── notebooks/
-│   ├── 01_UC2_Feature_Engineering.ipynb
-│   ├── 02_UC2_HMM_Training.ipynb
-│   ├── 03_UC2_Exercise3_Scoring.ipynb
-│   └── 04_UC2_Rule_Based_Validation.ipynb
+│   ├── 01_Feature_Engineering.ipynb
+│   ├── 02_HMM_Training.ipynb
+│   ├── 03_Anomaly_Scoring.ipynb
+│   └── 04_Rule_Based_Validation.ipynb
 ├── src/                      ← importable Python modules
 │   ├── uc2_symbols.py        ← 7-symbol activation vocabulary
 │   ├── uc2_features.py       ← pattern windows, sequence prep, aggregates
@@ -39,10 +39,10 @@ stage and writes its own artefacts to `outputs/`.
 
 | # | Notebook | Input | Output |
 |---|---|---|---|
-| 1 | `01_UC2_Feature_Engineering.ipynb` | Activation, purchase, validation, and enrichment CSVs | `feature_table.parquet`, `symbol_rows.parquet`, `sequences.npz` |
-| 2 | `02_UC2_HMM_Training.ipynb` | `sequences.npz` | `hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv` |
-| 3 | `03_UC2_Exercise3_Scoring.ipynb` | all of the above | `rider_scores.parquet`, `uc2_human_review_shortlist_v2.csv` |
-| 4 | `04_UC2_Rule_Based_Validation.ipynb` | all of the above | `uc2_rule_vs_hmm_overlap.csv`, `uc2_hmm_only_riders.csv` |
+| 1 | `01_Feature_Engineering.ipynb` | Activation, purchase, validation, and enrichment CSVs | `feature_table.parquet`, `symbol_rows.parquet`, `sequences.npz` |
+| 2 | `02_HMM_Training.ipynb` | `sequences.npz` | `hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv` |
+| 3 | `03_Anomaly_Scoring.ipynb` | all of the above | `rider_scores.parquet`, `uc2_human_review_shortlist_v2.csv` |
+| 4 | `04_Rule_Based_Validation.ipynb` | all of the above | `uc2_rule_vs_hmm_overlap.csv`, `uc2_hmm_only_riders.csv` |
 
 Notebook 01 cell 2 resolves the data directory automatically via `UC2Paths` —
 see *Data location* below.
@@ -144,10 +144,10 @@ pip install pandas numpy pyarrow hmmlearn
 
 ## Data location
 
-The notebooks expect the input CSVs in a `data/` directory inside `UC2_v2/`:
+The notebooks expect the input CSVs in a `data/` directory inside `pipeline/`:
 
 ```
-UC2_v2/
+pipeline/
 └── data/
     ├── retail_activations.csv            (~5.2 GB, 6.4 M rows)  ← required
     ├── retail_ticket_purchases.csv       (~2.9 GB, 3.5 M rows)  ← required

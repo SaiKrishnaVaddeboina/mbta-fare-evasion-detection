@@ -18,7 +18,7 @@ laptop.
 
 `retail_tickets.csv` is a reference bridge table and is not consumed by
 notebooks 01 – 04. Notebook 01 cell 2 resolves the data root automatically
-by probing `UC2_v2/data` first.
+by probing `pipeline/data` first.
 
 ## Wall-clock timings
 
@@ -118,7 +118,7 @@ surfaces a distinct, defensible population for human review.
 
 ## Deliverable files
 
-All artefacts land in `UC2_v2/outputs/`:
+All artefacts land in `pipeline/outputs/`:
 
 * `feature_table.parquet` — rider × feature matrix with calendar flags
 * `symbol_rows.parquet` — long-format symbol rows
@@ -158,7 +158,7 @@ fit adds ~0.5 GB, for a total peak of ~7 GB on a 16 GB machine — leaving
 2. Confirm the CSVs are in place:
 
    ```
-   ls -lh ~/Desktop/"Cap proj"/UC2_v2/data/*.csv
+   ls -lh ~/Desktop/"Cap proj"/pipeline/data/*.csv
    ```
 
    The four primary files are in the 3 – 7 GB range; the three enrichment
@@ -174,7 +174,7 @@ fit adds ~0.5 GB, for a total peak of ~7 GB on a 16 GB machine — leaving
    * `03_UC2_Exercise3_Scoring.ipynb` (~3 min)
    * `04_UC2_Rule_Based_Validation.ipynb` (~2 min)
 
-5. The final deliverables land in `UC2_v2/outputs/`. See the *Deliverable
+5. The final deliverables land in `pipeline/outputs/`. See the *Deliverable
    files* section above.
 
 ### If memory becomes tight

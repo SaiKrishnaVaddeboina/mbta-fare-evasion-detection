@@ -54,15 +54,15 @@ flowchart LR
 
 Boxes shaded red contain rider identifiers and are excluded from this repository (see [DATA.md](DATA.md) and [.gitignore](.gitignore)). Boxes shaded green contain only model-level artefacts and are committed.
 
-## Module map (`UC2_v2/src/`)
+## Module map (`pipeline/src/`)
 
 | Module | Responsibility |
 |---|---|
-| [`uc2_symbols.py`](UC2_v2/src/uc2_symbols.py) | Seven-symbol activation vocabulary; first-match-wins emit rule on a per-event `ActivationEvent` record |
-| [`uc2_features.py`](UC2_v2/src/uc2_features.py) | O(n) two-pointer pattern-window counter (HIGH 240 h / MEDIUM 168 h); FIFO-30 sequence prep; timing aggregates |
-| [`uc2_hmm_utils.py`](UC2_v2/src/uc2_hmm_utils.py) | `train_multi` parallel multi-seed × multi-state grid; `hmmlearn` primary + pure-numpy Baum-Welch fallback; BIC selection |
-| [`uc2_scoring.py`](UC2_v2/src/uc2_scoring.py) | Posterior-state dominance, four-signal weighted composite, burst-only de-weight |
-| [`uc2_io.py`](UC2_v2/src/uc2_io.py) | Chunked CSV reads (1 M-row chunks), categorical ID dtypes, strict UTC timestamp validation, calendar enrichment |
+| [`uc2_symbols.py`](pipeline/src/uc2_symbols.py) | Seven-symbol activation vocabulary; first-match-wins emit rule on a per-event `ActivationEvent` record |
+| [`uc2_features.py`](pipeline/src/uc2_features.py) | O(n) two-pointer pattern-window counter (HIGH 240 h / MEDIUM 168 h); FIFO-30 sequence prep; timing aggregates |
+| [`uc2_hmm_utils.py`](pipeline/src/uc2_hmm_utils.py) | `train_multi` parallel multi-seed × multi-state grid; `hmmlearn` primary + pure-numpy Baum-Welch fallback; BIC selection |
+| [`uc2_scoring.py`](pipeline/src/uc2_scoring.py) | Posterior-state dominance, four-signal weighted composite, burst-only de-weight |
+| [`uc2_io.py`](pipeline/src/uc2_io.py) | Chunked CSV reads (1 M-row chunks), categorical ID dtypes, strict UTC timestamp validation, calendar enrichment |
 
 ## Data-flow contracts
 
@@ -93,10 +93,10 @@ sequenceDiagram
 
 | # | Notebook | Reads | Writes |
 |---|---|---|---|
-| 01 | `01_UC2_Feature_Engineering.ipynb` | All input CSVs | `feature_table.parquet`, `symbol_rows.parquet`, `sequences.npz` |
-| 02 | `02_UC2_HMM_Training.ipynb` | `sequences.npz` | `hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv` |
-| 03 | `03_UC2_Exercise3_Scoring.ipynb` | All of the above | `rider_scores.parquet`, `uc2_human_review_shortlist_v2.csv` |
-| 04 | `04_UC2_Rule_Based_Validation.ipynb` | All of the above | `uc2_rule_vs_hmm_overlap.csv`, `uc2_hmm_only_riders.csv` |
+| 01 | `01_Feature_Engineering.ipynb` | All input CSVs | `feature_table.parquet`, `symbol_rows.parquet`, `sequences.npz` |
+| 02 | `02_HMM_Training.ipynb` | `sequences.npz` | `hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv` |
+| 03 | `03_Anomaly_Scoring.ipynb` | All of the above | `rider_scores.parquet`, `uc2_human_review_shortlist_v2.csv` |
+| 04 | `04_Rule_Based_Validation.ipynb` | All of the above | `uc2_rule_vs_hmm_overlap.csv`, `uc2_hmm_only_riders.csv` |
 
 ## Key design decisions
 
@@ -115,4 +115,4 @@ sequenceDiagram
 | Notebook 03 — scoring | ~3 min | ~3 GB |
 | Notebook 04 — rule-vs-HMM validation | ~2 min | ~3 GB |
 
-Reproducible on a 16 GB M-series laptop. See [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md) for the full memory budget.
+Reproducible on a 16 GB M-series laptop. See [pipeline/RUN_RESULTS.md](pipeline/RUN_RESULTS.md) for the full memory budget.

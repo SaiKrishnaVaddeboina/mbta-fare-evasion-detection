@@ -39,9 +39,9 @@
 | [Final Report.docx](Final%20Report.docx) | Full written report (executive summary, methodology, results, discussion, references, appendix) |
 | [Final Presentation.pptx](Final%20Presentation.pptx) | Final defence slide deck |
 | [Final Poster.pptx](Final%20Poster.pptx) | Conference-style summary poster |
-| [UC2_v2/](UC2_v2/) | Reproducible Python implementation (notebooks, source modules, outputs) |
+| [pipeline/](pipeline/) | Reproducible Python implementation (notebooks, source modules, outputs) |
 
-The written report is the canonical reference for methodology, results, and recommendations. The `UC2_v2/` folder contains the working code pipeline that produces the artefacts described in the report.
+The written report is the canonical reference for methodology, results, and recommendations. The `pipeline/` folder contains the working code pipeline that produces the artefacts described in the report.
 
 ---
 
@@ -118,9 +118,9 @@ The pipeline is positioned as a *complement* to rule-based detection rather than
 ### Selected figures
 
 <p align="center">
-  <img src="UC2_v2/docs/figures/bic_sweep.png" width="48%" alt="BIC sweep — 9 states selected"/>
+  <img src="pipeline/docs/figures/bic_sweep.png" width="48%" alt="BIC sweep — 9 states selected"/>
   &nbsp;
-  <img src="UC2_v2/docs/figures/emissions_heatmap.png" width="48%" alt="9-state emission probability matrix"/>
+  <img src="pipeline/docs/figures/emissions_heatmap.png" width="48%" alt="9-state emission probability matrix"/>
 </p>
 <p align="center">
   <em>Left:</em> BIC across the state grid — 9 states minimise BIC.
@@ -129,9 +129,9 @@ The pipeline is positioned as a *complement* to rule-based detection rather than
 </p>
 
 <p align="center">
-  <img src="UC2_v2/docs/figures/score_histogram.png" width="48%" alt="Combined anomaly score distribution"/>
+  <img src="pipeline/docs/figures/score_histogram.png" width="48%" alt="Combined anomaly score distribution"/>
   &nbsp;
-  <img src="UC2_v2/docs/figures/shortlist_stability.png" width="48%" alt="Top-100 shortlist stability across seeds"/>
+  <img src="pipeline/docs/figures/shortlist_stability.png" width="48%" alt="Top-100 shortlist stability across seeds"/>
 </p>
 <p align="center">
   <em>Left:</em> distribution of combined anomaly scores.
@@ -167,16 +167,16 @@ The pipeline is positioned as a *complement* to rule-based detection rather than
 
 ---
 
-## Implementation — `UC2_v2/`
+## Implementation — `pipeline/`
 
-The [UC2_v2/](UC2_v2/) folder contains the reproducible Python implementation of the **rule-baseline, HMM training, and posterior-scoring layers** of the team pipeline (layers 1, 2, and the HMM-posterior component of layer 3 in the diagram above). The inspector-reactivity feature, K-means clustering, UMAP visualisation, and weather enrichment described in the full report were developed separately by other team members and are not included in this code annex; please refer to [Final Report.docx](Final%20Report.docx) for end-to-end methodology and results.
+The [pipeline/](pipeline/) folder contains the reproducible Python implementation of the **rule-baseline, HMM training, and posterior-scoring layers** of the team pipeline (layers 1, 2, and the HMM-posterior component of layer 3 in the diagram above). The inspector-reactivity feature, K-means clustering, UMAP visualisation, and weather enrichment described in the full report were developed separately by other team members and are not included in this code annex; please refer to [Final Report.docx](Final%20Report.docx) for end-to-end methodology and results.
 
-> **Data confidentiality.** The MBTA dataset is provided by Masabi under a data-use agreement. The `UC2_v2/data/` directory and all rider-level outputs (`feature_table.*`, `symbol_rows.*`, `rider_scores.*`, `sequences.npz`, and the shortlist CSVs) are excluded from this repository via `.gitignore` and are not redistributed. Only model-level artefacts that do not contain rider identifiers (`hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv`) are committed.
+> **Data confidentiality.** The MBTA dataset is provided by Masabi under a data-use agreement. The `pipeline/data/` directory and all rider-level outputs (`feature_table.*`, `symbol_rows.*`, `rider_scores.*`, `sequences.npz`, and the shortlist CSVs) are excluded from this repository via `.gitignore` and are not redistributed. Only model-level artefacts that do not contain rider identifiers (`hmm_best.pkl`, `hmm_emissions.csv`, `hmm_grid_results.csv`) are committed.
 
 Folder layout:
 
 ```
-UC2_v2/
+pipeline/
 ├── README.md                 ← code-level documentation
 ├── RUN_RESULTS.md            ← reproducible run figures
 ├── notebooks/                ← four sequential Jupyter notebooks
@@ -190,7 +190,7 @@ UC2_v2/
 │   ├── uc2_hmm_utils.py      ← parallel multi-seed/multi-state HMM training
 │   ├── uc2_scoring.py        ← posterior-dominance scoring + burst de-weight
 │   └── uc2_io.py             ← CSV readers, UTC validation, enrichment joins
-├── data/                     ← input CSVs (see UC2_v2/README.md)
+├── data/                     ← input CSVs (see pipeline/README.md)
 └── outputs/                  ← parquet / pickle / csv deliverables
 ```
 
@@ -204,13 +204,13 @@ pip install -r requirements.txt
 
 # Generate synthetic data so the pipeline can run end-to-end
 # (the production MBTA data is not redistributed — see DATA.md)
-python scripts/generate_synthetic_data.py --out UC2_v2/data/ --riders 1000
+python scripts/generate_synthetic_data.py --out pipeline/data/ --riders 1000
 
 # Run the four notebooks in order
-jupyter notebook UC2_v2/notebooks/
+jupyter notebook pipeline/notebooks/
 ```
 
-For full installation, data-access, and reproduction instructions see [UC2_v2/README.md](UC2_v2/README.md), [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md), and [DATA.md](DATA.md). For the module map and end-to-end data-flow contracts, see [ARCHITECTURE.md](ARCHITECTURE.md).
+For full installation, data-access, and reproduction instructions see [pipeline/README.md](pipeline/README.md), [pipeline/RUN_RESULTS.md](pipeline/RUN_RESULTS.md), and [DATA.md](DATA.md). For the module map and end-to-end data-flow contracts, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ---
 
@@ -257,7 +257,7 @@ mbta-fare-evasion-detection/
 ├── Final Poster.pptx                  ← summary poster
 ├── scripts/
 │   └── generate_synthetic_data.py     ← runs the pipeline without the production data
-└── UC2_v2/                            ← reproducible Python implementation
+└── pipeline/                            ← reproducible Python implementation
     ├── README.md  /  RUN_RESULTS.md
     ├── src/       (5 modules)
     ├── notebooks/ (4 sequential notebooks)
