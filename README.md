@@ -2,6 +2,13 @@
 
 **A Hidden Markov Model and Multi-Signal Anomaly Scoring Framework for Behavioural Fare-Evasion Detection**
 
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Status: Capstone Final](https://img.shields.io/badge/status-capstone%20final-brightgreen.svg)](Final%20Report.docx)
+[![Sponsor: Masabi × Gemsen](https://img.shields.io/badge/sponsor-Masabi%20%C3%97%20Gemsen-orange.svg)](https://www.masabi.com)
+
+> A four-layer ML pipeline (rule baseline + 9-state HMM + multi-signal anomaly score + K-means clustering) that surfaces **15,195 fare-evading riders** the existing rule-based system completely misses — a **20.5 % novelty rate** across **221,382 riders** and **2,904,144 activation–scan events** on the MBTA commuter rail network.
+
 ---
 
 ## Submission
@@ -108,6 +115,30 @@ The pipeline is positioned as a *complement* to rule-based detection rather than
 | **S0** | Purchase-Triggered | 11,920 (11.6 %) | `PURCHASE_THEN_ACTIVATE_FAST` (0.367) | **0.971** |
 | **S3** | Moderate Evader | 20,099 (23.0 %) | `ACTIVATE_FAST_HANDHELD` (0.463) | **0.973** |
 
+### Selected figures
+
+<p align="center">
+  <img src="UC2_v2/docs/figures/bic_sweep.png" width="48%" alt="BIC sweep — 9 states selected"/>
+  &nbsp;
+  <img src="UC2_v2/docs/figures/emissions_heatmap.png" width="48%" alt="9-state emission probability matrix"/>
+</p>
+<p align="center">
+  <em>Left:</em> BIC across the state grid — 9 states minimise BIC.
+  &nbsp;&nbsp;
+  <em>Right:</em> emission probabilities for the selected 9-state HMM.
+</p>
+
+<p align="center">
+  <img src="UC2_v2/docs/figures/score_histogram.png" width="48%" alt="Combined anomaly score distribution"/>
+  &nbsp;
+  <img src="UC2_v2/docs/figures/shortlist_stability.png" width="48%" alt="Top-100 shortlist stability across seeds"/>
+</p>
+<p align="center">
+  <em>Left:</em> distribution of combined anomaly scores.
+  &nbsp;&nbsp;
+  <em>Right:</em> top-100 shortlist stability across HMM seeds.
+</p>
+
 ### The six operational clusters (K-means)
 
 | Cluster | Label | Riders | Score | Rule A | Recommended action |
@@ -163,7 +194,23 @@ UC2_v2/
 └── outputs/                  ← parquet / pickle / csv deliverables
 ```
 
-To reproduce the pipeline outputs, follow the instructions in [UC2_v2/README.md](UC2_v2/README.md) and [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md).
+### Quick start
+
+```bash
+git clone https://github.com/SaiKrishnaVaddeboina/mbta-fare-evasion-detection.git
+cd mbta-fare-evasion-detection
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# Generate synthetic data so the pipeline can run end-to-end
+# (the production MBTA data is not redistributed — see DATA.md)
+python scripts/generate_synthetic_data.py --out UC2_v2/data/ --riders 1000
+
+# Run the four notebooks in order
+jupyter notebook UC2_v2/notebooks/
+```
+
+For full installation, data-access, and reproduction instructions see [UC2_v2/README.md](UC2_v2/README.md), [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md), and [DATA.md](DATA.md).
 
 ---
 
@@ -191,6 +238,43 @@ The unsupervised approach was a deliberate choice — labels were unavailable at
 5. **Cross-agency generalisation** — test on a second transit agency with a different inspection regime.
 
 Full details, references, and appendices are in [Final Report.docx](Final%20Report.docx).
+
+---
+
+## Repository layout
+
+```
+mbta-fare-evasion-detection/
+├── README.md                          ← you are here
+├── LICENSE                            ← MIT
+├── DATA.md                            ← schema + access procedure for the Masabi dataset
+├── CITATION.cff                       ← academic citation
+├── requirements.txt                   ← Python dependencies
+├── Final Report.docx                  ← canonical written deliverable
+├── Final Presentation.pptx            ← defence slide deck
+├── Final Poster.pptx                  ← summary poster
+├── scripts/
+│   └── generate_synthetic_data.py     ← runs the pipeline without the production data
+└── UC2_v2/                            ← reproducible Python implementation
+    ├── README.md  /  RUN_RESULTS.md
+    ├── src/       (5 modules)
+    ├── notebooks/ (4 sequential notebooks)
+    └── outputs/   (model artefacts only — rider-level outputs excluded)
+```
+
+## Contributing & contact
+
+This is a completed academic capstone — issues and pull requests are not actively monitored. For questions about the methodology, please refer to [Final Report.docx](Final%20Report.docx) or contact the team via the WPI MS FinTech programme.
+
+## Citation
+
+If you use this work, please cite via [CITATION.cff](CITATION.cff) or:
+
+> Duah, D., Owusu Sarfo, B. K., Malyala, S. P., Milanzi, M. T., & Vaddeboina, S. K. (2026). *Detecting Inspector-Triggered Ticket-Purchase Fraud on MBTA Commuter Rail: A Hidden Markov Model and Multi-Signal Anomaly Scoring Framework.* MS FinTech Capstone, Worcester Polytechnic Institute. https://github.com/SaiKrishnaVaddeboina/mbta-fare-evasion-detection
+
+## Licence
+
+[MIT](LICENSE) — applies to source code only. The MBTA / Masabi dataset is **not** included and is governed by a separate data-use agreement.
 
 ---
 

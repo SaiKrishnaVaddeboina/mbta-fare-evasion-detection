@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+title: "Detecting Inspector-Triggered Ticket-Purchase Fraud on MBTA Commuter Rail"
+message: "If you use this work, please cite it as below."
+type: software
+authors:
+  - family-names: Duah
+    given-names: Daniel
+  - family-names: Owusu Sarfo
+    given-names: Bismark Kofi
+  - family-names: Malyala
+    given-names: Sai Priya
+  - family-names: Milanzi
+    given-names: Martin Thulani
+  - family-names: Vaddeboina
+    given-names: Sai Krishna
+date-released: 2026-05-01
+url: "https://github.com/SaiKrishnaVaddeboina/mbta-fare-evasion-detection"
+repository-code: "https://github.com/SaiKrishnaVaddeboina/mbta-fare-evasion-detection"
+license: MIT
+keywords:
+  - fare-evasion
+  - fraud-detection
+  - hidden-markov-model
+  - anomaly-detection
+  - public-transit
+  - sequence-modelling
+  - mbta
+  - capstone-project
+abstract: >-
+  A four-layer machine-learning pipeline for detecting inspector-triggered
+  ticket-purchase fraud on the MBTA commuter rail network. Combines a
+  rule-based baseline, a 9-state Categorical Hidden Markov Model selected
+  by Bayesian Information Criterion, a four-signal composite anomaly score,
+  and K-means clustering with silhouette validation to identify 15,195
+  fare-evading riders that the existing rule-based system misses
+  (20.5% novelty rate). MS FinTech Capstone, Team 2, Spring 2026.
+  Industry partners: Masabi × Gemsen.

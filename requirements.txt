@@ -1,0 +1,18 @@
+# Core scientific stack
+pandas>=2.0
+numpy>=1.24
+pyarrow>=11
+
+# HMM (optional — pure-numpy fallback ships with the repo)
+hmmlearn>=0.3
+
+# Notebooks
+jupyter>=1.0
+ipykernel>=6.0
+
+# Document generation (used by build_report.py)
+python-docx>=1.0
+openpyxl>=3.1
+
+# Plotting (figures in docs/figures/)
+matplotlib>=3.7
