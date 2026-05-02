@@ -210,7 +210,7 @@ python scripts/generate_synthetic_data.py --out UC2_v2/data/ --riders 1000
 jupyter notebook UC2_v2/notebooks/
 ```
 
-For full installation, data-access, and reproduction instructions see [UC2_v2/README.md](UC2_v2/README.md), [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md), and [DATA.md](DATA.md).
+For full installation, data-access, and reproduction instructions see [UC2_v2/README.md](UC2_v2/README.md), [UC2_v2/RUN_RESULTS.md](UC2_v2/RUN_RESULTS.md), and [DATA.md](DATA.md). For the module map and end-to-end data-flow contracts, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ---
 
@@ -246,8 +246,10 @@ Full details, references, and appendices are in [Final Report.docx](Final%20Repo
 ```
 mbta-fare-evasion-detection/
 ├── README.md                          ← you are here
-├── LICENSE                            ← MIT
+├── ARCHITECTURE.md                    ← pipeline diagrams, module map, design decisions
 ├── DATA.md                            ← schema + access procedure for the Masabi dataset
+├── SECURITY.md                        ← data-handling and reporting policy
+├── LICENSE                            ← MIT
 ├── CITATION.cff                       ← academic citation
 ├── requirements.txt                   ← Python dependencies
 ├── Final Report.docx                  ← canonical written deliverable
